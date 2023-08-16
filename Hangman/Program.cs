@@ -9,8 +9,9 @@
         {
             Console.WriteLine("Hello, and welcome to hangman");
             string word = RandomWord();
-            InputLetter();
-
+            string letter = InputLetter();
+            AddLetterToGuessed(letter);
+            GUI(word);
         }
 
         static string InputLetter()
@@ -46,9 +47,23 @@
 
         static void GUI(string word)
         {
-            int numLetters = word.Length;
-            string underScores = "".PadLeft(numLetters, '_');
-            Console.WriteLine(underScores);
+            //If letter is in position in a loop of char in words,
+            //then write the letter otherwise write underscore
+            //int numLetters = word.Length;
+            foreach (char letter in word) 
+            {
+                if (guessedLetters.Contains(letter)) Console.Write(letter);
+                else Console.Write("_");
+            }
+            
+            //for (int i = 0; i < numLetters; i++)
+            //{
+            //    if (guessedLetters.Contains(word[i])) Console.Write(word[i]);
+            //    else Console.Write("_");
+            //}
+
+            //string underScores = "".PadLeft(numLetters, '_');
+            //Console.WriteLine(underScores);
         }
 
         static string RandomWord()
